@@ -43,6 +43,10 @@ Run:
 var camelopard = require('camelopard');
 var _ = require('lodash');
 
+//////////////////////
+// EDIT BELOW
+//////////////////////
+
 // Create presets in the camera and add to list below
 var presets = ['garden', 'parkinglot', 'street', 'a-building'];
 
@@ -54,6 +58,9 @@ var cameraConfiguration = {
     username: 'root',
     password: 'pass'
 };
+//////////////////////
+// EDIT ABOVE
+//////////////////////
 var i = 0;
 
 var gotoPresetPosition = function(presetPositionName, callback) {
@@ -69,10 +76,10 @@ var downloadImage = function(callback) {
 };
 
 var presetLoop = function () {
-    var delayPreset = 2000; // let the PTZ engines finish their task
-    var delayImage = 2000; // let autofocus finish it task
+    var delayPreset = 2000; // let the PTZ engines finish their tasks
+    var delayImage = 2000; // let autofocus finish
     if (i === 0) {
-        delayPTZEngines = 1;
+        delayPreset = 1;
     } 
 
     setTimeout(function () {
