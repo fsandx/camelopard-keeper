@@ -31,12 +31,12 @@ The SnapshotGuardtour performs a custom guard tour between predefined PTZ preset
 and takes a snapshot from each position.
 
 Install:
-    Edit the presets and cameraConfiguration in config.json file:
+    Edit settings in config.json file:
         presets: create presets in the camera and add names to the list
         cameraConfiguration: add your camera settings
         image: image settings
-        delayPreset: wait so PTZ engines could finish their tasks
-        delayImage: wait so autofocus is done
+        delayPreset: ms to wait wait so PTZ engines could finish their tasks
+        delayImage: ms to wait wait wait so autofocus could be done
     npm install camelopard
 Run: 
     node snapshotguardtour/SnaphotGuardtour.js
@@ -65,8 +65,8 @@ var downloadImage = function(callback) {
 };
 
 var presetLoop = function () {
-    var delayPreset = config.delayPreset; // let the PTZ engines finish their tasks
-    var delayImage = config.delayImage; // let autofocus finish
+    var delayPreset = config.delayPreset;
+    var delayImage = config.delayImage;
     if (i === 0) {
         delayPreset = 1;
     } 
