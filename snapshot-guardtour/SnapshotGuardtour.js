@@ -47,7 +47,7 @@ Run:
 
 var camelopard  = require('camelopard'),
     _           = require('lodash'),
-    config      = require('./config.local.json'),
+    config      = require('./config.json'),
     i           = 0;
 
 var gotoPresetPosition = function(presetPositionName, callback) {
