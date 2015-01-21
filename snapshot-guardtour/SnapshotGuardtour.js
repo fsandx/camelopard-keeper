@@ -26,11 +26,12 @@ SOFTWARE.
 /*
 
 SnapshotGuardtour.js is a part of Camelopard-keeper, which is a
-collection of small nodejs demo applications for the cmaelopard npm package.
+collection of small nodejs demo applications for the camelopard npm package.
 The SnapshotGuardtour performs a custom guard tour between predefined PTZ presets,
 and takes a snapshot from each position.
 
-Install: 
+Install:
+    Edit the presets and cameraConfiguration variables below
     npm install camelopard
 Run: 
     node snapshotguardtour/SnaphotGuardtour.js
@@ -42,13 +43,16 @@ Run:
 var camelopard = require('camelopard');
 var _ = require('lodash');
 
-var presets = ['oversikt1', 'oversikt2', 'oversikt3', 'road'];
+// Create presets in the camera and add to list below
+var presets = ['garden', 'parkinglot', 'street', 'a-building'];
+
+// Add your camera settings
 var cameraConfiguration = {
     name: 'MycamA',
     brand: 'Axis',
     ip: '192.168.1.68',
     username: 'root',
-    password: 'grusberg'
+    password: 'pass'
 };
 var i = 0;
 
