@@ -8,7 +8,7 @@
         "password": "pass"
     },
     "image": {
-        "resolution": "1024,768",
+        "resolution": "1024x768",
         "compression": 30
     },
     "delayPreset": 2000,
