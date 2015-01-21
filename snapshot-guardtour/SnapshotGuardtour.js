@@ -31,7 +31,12 @@ The SnapshotGuardtour performs a custom guard tour between predefined PTZ preset
 and takes a snapshot from each position.
 
 Install:
-    Edit the presets and cameraConfiguration variables below
+    Edit the presets and cameraConfiguration in config.json file:
+        presets: create presets in the camera and add names to the list
+        cameraConfiguration: add your camera settings
+        image: image settings
+        delayPreset: wait so PTZ engines could finish their tasks
+        delayImage: wait so autofocus is done
     npm install camelopard
 Run: 
     node snapshotguardtour/SnaphotGuardtour.js
@@ -40,58 +45,42 @@ Run:
 
 /*globals require */
 
-var camelopard = require('camelopard');
-var _ = require('lodash');
-
-//////////////////////
-// EDIT BELOW
-//////////////////////
-
-// Create presets in the camera and add to list below
-var presets = ['garden', 'parkinglot', 'street', 'a-building'];
-
-// Add your camera settings
-var cameraConfiguration = {
-    name: 'MycamA',
-    brand: 'Axis',
-    ip: '192.168.1.68',
-    username: 'root',
-    password: 'pass'
-};
-//////////////////////
-// EDIT ABOVE
-//////////////////////
-var i = 0;
+var camelopard  = require('camelopard'),
+    _           = require('lodash'),
+    config      = require('./config.local.json'),
+    i           = 0;
 
 var gotoPresetPosition = function(presetPositionName, callback) {
-    camelopard.ptz.gotoPresetPosition(presetPositionName, cameraConfiguration, function(err, res) {
+    camelopard.ptz.gotoPresetPosition(presetPositionName, config.cameraConfiguration, function(err, res) {
         callback(err,res);
     })
 };
 
 var downloadImage = function(callback) {
-    camelopard.image.download(cameraConfiguration, function (err, res) {
+    camelopard.image.config.parameters.resolution = config.image.resolution;
+    camelopard.image.config.parameters.compression = config.image.compression;
+    camelopard.image.download(config.cameraConfiguration, function (err, res) {
         callback(err, res);
     })
 };
 
 var presetLoop = function () {
-    var delayPreset = 2000; // let the PTZ engines finish their tasks
-    var delayImage = 2000; // let autofocus finish
+    var delayPreset = config.delayPreset; // let the PTZ engines finish their tasks
+    var delayImage = config.delayImage; // let autofocus finish
     if (i === 0) {
         delayPreset = 1;
     } 
 
     setTimeout(function () {
-        console.log('preset:' + presets[i]);
-        gotoPresetPosition(presets[i], function (err, res){});
+        console.log('preset:' + config.presets[i]);
+        gotoPresetPosition(config.presets[i], function (err, res){});
         setTimeout(function () {
             downloadImage(function (err, res) {
-                console.log('Image downloaded at preset:' + presets[i] + ', as ' + res);
+                console.log('Image downloaded at preset:' + config.presets[i] + ', as ' + res);
             })
             
             i++;
-            if (i < presets.length) {
+            if (i < config.presets.length) {
                 presetLoop();
             }
         }, delayImage)
