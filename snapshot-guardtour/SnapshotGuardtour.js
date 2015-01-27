@@ -47,46 +47,75 @@ Run:
 
 var camelopard  = require('camelopard'),
     _           = require('lodash'),
-    config      = require('./config.json'),
     i           = 0;
 
-var gotoPresetPosition = function(presetPositionName, callback) {
-    camelopard.ptz.gotoPresetPosition(presetPositionName, config.cameraConfiguration, function(err, res) {
-        callback(err,res);
-    })
+var data = {
+  "cameras": [
+    {
+      "name": "Default Camera",
+      "brand": "Axis",
+      "ip": "192.168.0.90", 
+      "username": "root",
+      "password": "pass",
+      "guardTour": {
+        "presets": [
+          "building-a",
+          "window2",
+          "desks",
+          "bridge"
+        ],
+        "delayBetweenPreset": 2000,
+        "delayBeforeSnapshot": 2000
+      },
+      "snapshot": {
+        "resolution": "1024x768",
+        "compression": 30,
+        "rotation": 0,
+        "cameraNum": 1,
+        "downloadFolder": "files\/snapshots"
+      }
+    }
+  ]
+};
+var cameraConfiguration = data.cameras[0];
+
+var gotoPresetPosition = function (presetPositionName, callback) {
+  camelopard.ptz.gotoPresetPosition(presetPositionName, cameraConfiguration, function (err, res) {
+      callback(err,res);
+  })
 };
 
-var downloadImage = function(callback) {
-    camelopard.image.config.parameters.resolution = config.image.resolution;
-    camelopard.image.config.parameters.compression = config.image.compression;
-    camelopard.image.download(config.cameraConfiguration, function (err, res) {
-        callback(err, res);
-    })
+var downloadImage = function (callback) {
+  camelopard.image.download(cameraConfiguration, function (err, res) {
+    callback(err, res);
+  });
 };
 
 var presetLoop = function () {
-    var delayPreset = config.delayPreset;
-    var delayImage = config.delayImage;
-    if (i === 0) {
-        delayPreset = 1;
-    } 
+  var delayPreset = cameraConfiguration.guardTour.delayBetweenPreset;
+  var delayImage = cameraConfiguration.guardTour.delayBeforeSnapshot;
+  var preset;
+  if (i === 0) {
+    delayPreset = 1;
+  }
 
+  setTimeout(function () {
+    preset = cameraConfiguration.guardTour.presets[i];
+    console.log('preset:' + preset);
+    gotoPresetPosition(preset, function (err, res) {});
     setTimeout(function () {
-        console.log('preset:' + config.presets[i]);
-        gotoPresetPosition(config.presets[i], function (err, res){});
-        setTimeout(function () {
-            downloadImage(function (err, res) {
-                console.log('Image downloaded at preset:' + config.presets[i] + ', as ' + res);
-            })
-            
-            i++;
-            if (i < config.presets.length) {
-                presetLoop();
-            }
-        }, delayImage)
+      downloadImage(function (err, res) {
+        console.log('Image downloaded at preset:' + preset + ', as ' + res);
+      });
+      
+      i++;
+      if (i < cameraConfiguration.guardTour.presets.length) {
+        presetLoop();
+      }
+    }, delayImage);
 
-    }, delayPreset)
+  }, delayPreset);
 };
 
-//execute presetLoop 
+//execute presetLoop
 presetLoop();
