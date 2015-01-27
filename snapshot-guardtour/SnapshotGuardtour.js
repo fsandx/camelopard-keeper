@@ -4,7 +4,7 @@ The MIT License (MIT)
 Copyright (c) 2015 Fredrik Sandberg
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
+of this software and associated documentation files (the 'Software'), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -13,7 +13,7 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -31,12 +31,6 @@ The SnapshotGuardtour performs a custom guard tour between predefined PTZ preset
 and takes a snapshot from each position.
 
 Install:
-    Edit settings in config.json file:
-        presets: create presets in the camera and add names to the list
-        cameraConfiguration: add your camera settings
-        image: image settings
-        delayPreset: ms to wait wait so PTZ engines could finish their tasks
-        delayImage: ms to wait wait wait so autofocus could be done
     npm install camelopard
 Run: 
     node snapshotguardtour/SnaphotGuardtour.js
@@ -50,29 +44,29 @@ var camelopard  = require('camelopard'),
     i           = 0;
 
 var data = {
-  "cameras": [
+  'cameras': [
     {
-      "name": "Default Camera",
-      "brand": "Axis",
-      "ip": "192.168.0.90", 
-      "username": "root",
-      "password": "pass",
-      "guardTour": {
-        "presets": [
-          "building-a",
-          "window2",
-          "desks",
-          "bridge"
+      'name': 'Default Camera',
+      'brand': 'Axis',
+      'ip': '192.168.0.90', 
+      'username': 'root',
+      'password': 'pass',
+      'guardTour': {
+        'presets': [
+          'building-a',
+          'window2',
+          'desks',
+          'bridge'
         ],
-        "delayBetweenPreset": 2000,
-        "delayBeforeSnapshot": 2000
+        'delayBetweenPreset': 2000,
+        'delayBeforeSnapshot': 2000
       },
-      "snapshot": {
-        "resolution": "1024x768",
-        "compression": 30,
-        "rotation": 0,
-        "cameraNum": 1,
-        "downloadFolder": "files\/snapshots"
+      'snapshot': {
+        'resolution': '1024x768',
+        'compression': 30,
+        'rotation': 0,
+        'cameraNum': 1,
+        'downloadFolder': 'files\/snapshots'
       }
     }
   ]
@@ -81,8 +75,8 @@ var cameraConfiguration = data.cameras[0];
 
 var gotoPresetPosition = function (presetPositionName, callback) {
   camelopard.ptz.gotoPresetPosition(presetPositionName, cameraConfiguration, function (err, res) {
-      callback(err,res);
-  })
+    callback(err, res);
+  });
 };
 
 var downloadImage = function (callback) {
