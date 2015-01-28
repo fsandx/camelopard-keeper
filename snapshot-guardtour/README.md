@@ -4,8 +4,6 @@ On a PTZ camera a position (pan, tilt, zoom) can be saved on the camera as a pre
 With this example-script you can move between presets and take a snapshot from the positions.
 
 ## SnapshotGuardtour
-SnapshotGuardtour.js is a part of Camelopard-keeper, which is a
-collection of small nodejs demo applications for the camelopard npm package.
 The SnapshotGuardtour performs a custom guard tour between predefined PTZ presets,
 and takes a snapshot from each position.
 
@@ -15,9 +13,7 @@ Run:
     node snapshotguardtour/SnaphotGuardtour.js
 
 ## ScheduledSnapshotGuardtour
-ScheduledSnaphotGuardtour.js is a part of Camelopard-keeper, which is a
-collection of small nodejs demo applications for the camelopard npm package.
-The ScheduledSnaphotGuardtour performs scheduled guard toura between predefined PTZ presets,
+The ScheduledSnaphotGuardtour performs scheduled guard tour between predefined PTZ presets,
 and takes a snapshot from each position, everytime.
 
 Install:
@@ -26,4 +22,4 @@ Install:
 Run: 
     node snapshotguardtour/ScheduledSnaphotGuardtour.js
 
-Recommendation: Use forever npm package to run script as a daemon.
+Recommendation: Use forever npm package, https://www.npmjs.com/package/forever, to run script as a daemon.
