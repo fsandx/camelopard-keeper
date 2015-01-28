@@ -8,18 +8,27 @@ The SnapshotGuardtour performs a custom guard tour between predefined PTZ preset
 and takes a snapshot from each position.
 
 Install:
+
     npm install camelopard
+    
 Run: 
+
     node snapshotguardtour/SnaphotGuardtour.js
+    
 
 ## ScheduledSnapshotGuardtour
 The ScheduledSnaphotGuardtour performs scheduled guard tour between predefined PTZ presets,
 and takes a snapshot from each position, everytime.
 
 Install:
+
     npm install camelopard
+    
     npm install node-schedule
+    
 Run: 
+
     node snapshotguardtour/ScheduledSnaphotGuardtour.js
+    
 
 Recommendation: Use forever npm package, https://www.npmjs.com/package/forever, to run script as a daemon.
