@@ -40,7 +40,6 @@ Run:
 /*globals require */
 
 var camelopard  = require('camelopard'),
-    _           = require('lodash'),
     i           = 0;
 
 var data = {
@@ -48,7 +47,7 @@ var data = {
     {
       'name': 'Default Camera',
       'brand': 'Axis',
-      'ip': '192.168.0.90', 
+      'ip': '192.168.0.90',
       'username': 'root',
       'password': 'pass',
       'guardTour': {
