@@ -42,8 +42,7 @@ var cams = data.cameras;
 
 _.forEach(cams, function (conf) {
   camelopard.image.download(conf, function (err, res) {
-
-    if (err !== undefined) {
+    if (!_.isUndefined(err)) {
       console.log('Error!' + err);
     } else {
       console.log('Image file downloaded as: ' + res);
