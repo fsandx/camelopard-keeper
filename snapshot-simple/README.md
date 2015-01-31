@@ -1,2 +1,36 @@
-# Snapshot Simple
+## Raspberry PI + NAS + IP Camera
+Recipe for running a script on a Raspberry pi that downloads images on a schedule from IP camera and saves them to NAS on a local ethernet.
+
+### Install Nodejs on Raspberry PI
+* 	sudo apt-get update -y && sudo apt-get upgrade -y
+* 	wget http://node-arm.herokuapp.com/node_latest_armhf.deb
+*  	sudo dpkg -i node_latest_armhf.deb
+* 	node -v
+
+### Mount NAS
+* 	cd /home/pi
+* 	mkdir myNAS
+* 	cd myNAS
+* 	mkdir myShare
+* 	sudo nano /etc/fstab
+* 	add line at the bottom: //myNAS/myShare /home/pi/myNAS/myShare cifs username=your_username,password=your_password,uid=pi,gid=pi 0 0
+	sudo reboot (or, sudo mount /home/pi/myNAS/myShare)
+
+### Install camelopard
+* 	mkdir camelopard-keeper 
+* 	git clone https://github.com/fsandx/camelopard-keeper camelopard-keeper
+* 	npm install camelopard
+* 	npm install request
+* 	npm install lodash
+* 	npm install mkdirp
+
+### Verify access to camera
+*   	Modify ip and username/password in params-list/ListAllParameters.js
+*  	node params-list/ListAllParameters.js
+
+### Run scheduled image download
+* edit configuration in snapshot-simple/SnapshotSimple.js
+* npm install node-schedule
+* node snapshot-simple/SnapshotSimple.js
+
 
