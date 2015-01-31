@@ -56,9 +56,9 @@ var runScheduledDownload = function () {
   //var s = '05 * * * * *';
   //Every minute
   var s = '01 * * * * *';
+  console.log('\n********************');
+  console.log('Scheduled image download started!');
   schedule.scheduleJob(s, function () {
-    console.log('\n********************');
-    console.log('Scheduled image download started!');
     camelopard.image.download(cameraConfiguration, function (err, res) {
       if (!_.isUndefined(err)) {
         console.log('Error:' + err);
