@@ -14,7 +14,7 @@ Recipe for running a script on a Raspberry pi that downloads images on a schedul
 * 	mkdir myShare
 * 	sudo nano /etc/fstab
 * 	add line at the bottom: //myNAS/myShare /home/pi/myNAS/myShare cifs username=your_username,password=your_password,uid=pi,gid=pi 0 0
-	sudo reboot (or, sudo mount /home/pi/myNAS/myShare)
+*	sudo reboot (or, sudo mount /home/pi/myNAS/myShare)
 
 ### Install camelopard on Raspberry PI
 * 	mkdir camelopard-keeper 
