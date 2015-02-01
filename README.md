@@ -10,7 +10,7 @@ All scripts are located in a subfolder of this repo, together with a more detail
 * Parameter, modify: https://github.com/fsandx/camelopard-keeper/tree/master/params-modify
 * Image - grap a snapshot from an ip camera on regular intervalls: https://github.com/fsandx/camelopard-keeper/tree/master/snapshot-simple
 * Image - grap snapshots from many ip cameras at the same time: https://github.com/fsandx/camelopard-keeper/tree/master/snapshot-multi-cams
-* Image, PTZ: Go on a virtual guardtours and grap imageas on a regular basis from many PTZ-position: https://github.com/fsandx/camelopard-keeper/tree/master/snapshot-guardtour
+* Image, PTZ: Go on virtual guardtours and grap images on a regular basis from many PTZ-position: https://github.com/fsandx/camelopard-keeper/tree/master/snapshot-guardtour
 
 ## Recepies
 * Run scheduled scripts on Raspberry PI that downloads images to Network Attached Storage (NAS): https://github.com/fsandx/camelopard-keeper/blob/master/ras-pi-nas.md
