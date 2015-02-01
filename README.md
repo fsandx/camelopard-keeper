@@ -5,7 +5,7 @@
 This a collection of example scripts and recepies targeting the camelopard npm package: https://www.npmjs.com/package/camelopard.
 
 ## Scripts
-All scripts has individual README-files for more more details.
+All scripts are located in a subfolder of this repo, together with a more detailed README-file.
 * Parameters, list all: https://github.com/fsandx/camelopard-keeper/tree/master/params-list
 * Parameter, modify: https://github.com/fsandx/camelopard-keeper/tree/master/params-modify
 * Image - grap a snapshot from an ip camera on regular intervalls: https://github.com/fsandx/camelopard-keeper/tree/master/snapshot-simple
