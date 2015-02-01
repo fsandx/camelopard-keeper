@@ -25,7 +25,7 @@ Recipe for running a script on a Raspberry pi that downloads images on a schedul
 * 	npm install mkdirp
 
 ### Run scheduled image download on RaspBerry PI
-* edit configuration in snapshot-simple/SnapshotSimple.js
+* edit configuration (ip adress, username, password, downloadFolder properties) in snapshot-simple/SnapshotSimple.js
 * npm install node-schedule
 * node snapshot-simple/SnapshotSimple.js
 
