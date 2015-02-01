@@ -1,5 +1,6 @@
 ## Recipe 1: Raspberry PI + NAS + IP Camera
 Recipe for running a script on a Raspberry pi that downloads images on a schedule from IP camera and saves them to NAS on a local ethernet.
+All instructions below assumes you are using ssh for accessing the Raspberry PI.
 
 ### Install Nodejs on Raspberry PI
 * 	sudo apt-get update -y && sudo apt-get upgrade -y
@@ -24,7 +25,7 @@ Recipe for running a script on a Raspberry pi that downloads images on a schedul
 * 	npm install lodash
 * 	npm install mkdirp
 
-### Run scheduled image download on RaspBerry PI
+### Run scheduled image download on Raspberry PI
 * edit configuration (ip adress, username, password, downloadFolder) in snapshot-simple/SnapshotSimple.js
 * npm install node-schedule
 * node snapshot-simple/SnapshotSimple.js
