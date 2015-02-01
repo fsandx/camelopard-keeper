@@ -1,5 +1,5 @@
 ## Recipe 1: Raspberry PI + NAS + IP Camera
-Recipe for running a script on a Raspberry pi that downloads images on a schedule from IP camera and saves them to NAS on a local ethernet.
+Recipe for running a script on a Raspberry pi that grabs snapshots on a daily basis from IP camera and saves them to NAS on a local ethernet.
 All instructions below assumes you are using ssh for accessing the Raspberry PI.
 
 ### Install Nodejs on Raspberry PI
