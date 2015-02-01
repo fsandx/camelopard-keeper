@@ -1,4 +1,4 @@
-## Raspberry PI + NAS + IP Camera
+## Recipe 1: Raspberry PI + NAS + IP Camera
 Recipe for running a script on a Raspberry pi that downloads images on a schedule from IP camera and saves them to NAS on a local ethernet.
 
 ### Install Nodejs on Raspberry PI
