@@ -14,4 +14,4 @@ All scripts are located in a subfolder of this repo, together with a more detail
 * Image, PTZ: Go on virtual guardtours and grap images on a regular basis from many PTZ-position: https://github.com/fsandx/camelopard-keeper/tree/master/snapshot-guardtour
 
 ## Recepies
-* Run scheduled scripts on Raspberry PI that downloads images to Network Attached Storage (NAS): https://github.com/fsandx/camelopard-keeper/blob/master/ras-pi-nas.md
+* Run scheduled scripts on a Raspberry PI that downloads images to a Network Attached Storage (NAS): https://github.com/fsandx/camelopard-keeper/blob/master/ras-pi-nas.md
