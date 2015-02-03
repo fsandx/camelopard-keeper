@@ -28,6 +28,8 @@ All instructions below assumes you are using ssh for accessing the Raspberry PI.
 ### Run scheduled image download on Raspberry PI
 * edit configuration (ip adress, username, password, downloadFolder) in snapshot-simple/SnapshotSimple.js
 * npm install node-schedule
-* node snapshot-simple/SnapshotSimple.js
+* nohup node snapshot-simple/SnapshotSimple.js &
+
+The nohup command will take care of keeping the node application running even if the ssh shell is closed, all output of the node application will be captured in a file called nohup.output. 
 
 
