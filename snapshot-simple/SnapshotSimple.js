@@ -25,8 +25,7 @@ SOFTWARE.
 /*globals require */
 
 var camelopard  = require('camelopard'),
-    _           = require('lodash'),
-    schedule    = require('node-schedule');
+    _           = require('lodash');
 
 var data = {
   'cameras': [
@@ -48,26 +47,21 @@ var data = {
 };
 var cameraConfiguration = data.cameras[0];
 
-
 var runScheduledDownload = function () {
-  //Every day at 13
-  //var s = '0 13 * * * * *';
-  //Every fem minutes
-  //var s = '05 * * * * *';
-  //Every minute
-  var s = '01 * * * * *';
-  console.log('\n********************');
-  console.log('Scheduled image download started!');
-  schedule.scheduleJob(s, function () {
-    camelopard.image.download(cameraConfiguration, function (err, res) {
-      if (!_.isUndefined(err)) {
-        console.log('Error:' + err);
-      } else {
-        console.log('Downloaded to: ' + res);
-      }
-    });
-  });
+    // every 30 mins
+    var minutes = 30, 
+        interval = minutes * 60 * 1000;
+
+    setInterval(function() {
+      camelopard.image.download(cameraConfiguration, function (err, res) {
+        if (!_.isUndefined(err)) {
+          console.log('Error:' + err);
+        } else {
+          console.log('Downloaded to: ' + res);
+        }
+      });
+    }, interval);
 };
 
-// Run a scheduled Guardtour
+// Run a scheduled image download
 runScheduledDownload();  
