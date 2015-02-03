@@ -29,4 +29,4 @@ Run:
     node snapshotguardtour/ScheduledSnaphotGuardtour.js
     
 
-Recommendation: Use forever npm package, https://www.npmjs.com/package/forever, to run script as a daemon.
+Recommendation: Use forever npm package, https://www.npmjs.com/package/forever, to run script as a daemon, or nohup.
