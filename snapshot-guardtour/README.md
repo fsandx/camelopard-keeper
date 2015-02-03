@@ -24,8 +24,6 @@ Install:
 
     npm install camelopard
     
-    npm install node-schedule
-    
 Run: 
 
     node snapshotguardtour/ScheduledSnaphotGuardtour.js
