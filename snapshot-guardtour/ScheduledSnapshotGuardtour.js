@@ -31,7 +31,6 @@ and takes a snapshot from each position, everytime.
 
 Install:
     npm install camelopard
-    npm install node-schedule
 Run: 
     node snapshotguardtour/ScheduledSnaphotGuardtour.js
 
@@ -41,39 +40,10 @@ Recommendation: Use forever npm package to run script as a daemon.
 
 /*globals require */
 
-var camelopard  = require('camelopard'),
-    schedule    = require('node-schedule'),
-    i           = 0;
-
-var data = {
-  'cameras': [
-    {
-      'name': 'Default Camera',
-      'brand': 'Axis',
-      'ip': '192.168.0.90',
-      'username': 'root',
-      'password': 'pass',
-      'guardTour': {
-        'presets': [
-          'building-a',
-          'window2',
-          'desks',
-          'bridge'
-        ],
-        'delayBetweenPreset': 2000,
-        'delayBeforeSnapshot': 2000
-      },
-      'snapshot': {
-        'resolution': '1024x768',
-        'compression': 30,
-        'rotation': 0,
-        'cameraNum': 1,
-        'downloadFolder': 'files\/snapshots'
-      }
-    }
-  ]
-};
-var cameraConfiguration = data.cameras[0];
+var 	camelopard  		= require('camelopard'),
+    	i                   	= 0,
+    	data                	= require('./data.json'),
+    	cameraConfiguration 	= data.cameras[0];
 
 var gotoPresetPosition = function (presetPositionName, callback) {
   camelopard.ptz.gotoPresetPosition(presetPositionName, cameraConfiguration, function (err, res) {
@@ -91,12 +61,14 @@ var gotoPresets = function () {
   var delayPreset = cameraConfiguration.guardTour.delayBetweenPreset;
   var delayImage = cameraConfiguration.guardTour.delayBeforeSnapshot;
   var preset;
+
   if (i === 0) {
     delayPreset = 1;
   }
 
   setTimeout(function () {
     preset = cameraConfiguration.guardTour.presets[i];
+    cameraConfiguration.snapshot.fileNamePrefix = preset.substring(2);
     console.log('preset:' + preset);
     gotoPresetPosition(preset, function (err, res) {});
     setTimeout(function () {
@@ -114,19 +86,16 @@ var gotoPresets = function () {
 };
 
 var runScheduledGuardtour = function () {
-  //Every day at 13
-  var s = '0 13 * * * * *';
-  //Every fem minutes
-  //var s = '05 * * * * *';
-  //Every minute
-  //var s = '01 * * * * *';
-  schedule.scheduleJob(s, function () {
-    console.log('\n********************');
-    console.log('Scheduled Guardtour started!');
-    i = 0;
-    gotoPresets();
-  });
+  // every 30 mins
+    var minutes = 30, 
+        interval = minutes * 60 * 1000;
+    setInterval(function() {
+        i = 0;
+        gotoPresets();
+    }, interval);
+
 };
 
 // Run a scheduled Guardtour
-runScheduledGuardtour();  
+gotoPresets(); // do a guardtour immidiately
+runScheduledGuardtour();  //do guardtours regularily

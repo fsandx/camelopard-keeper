@@ -1,0 +1,28 @@
+{
+  "cameras": [
+    {
+      "name": "Default Camera",
+      "brand": "Axis",
+      "ip": "192.168.0.90",
+      "username": "root",
+      "password": "pass",
+      "guardTour": {
+        "presets": [
+          "building-a",
+          "window2",
+          "desks",
+          "bridge"
+        ],
+        "delayBetweenPreset": 2000,
+        "delayBeforeSnapshot": 2000
+      },
+      "snapshot": {
+        "resolution": "1024x768",
+        "compression": 30,
+        "rotation": 0,
+        "cameraNum": 1,
+        "downloadFolder": "files\/snapshots"
+      }
+    }
+  ]
+}
