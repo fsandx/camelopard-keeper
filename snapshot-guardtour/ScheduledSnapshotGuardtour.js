@@ -68,8 +68,9 @@ var gotoPresets = function () {
 
   setTimeout(function () {
     preset = cameraConfiguration.guardTour.presets[i];
-    cameraConfiguration.snapshot.fileNamePrefix = preset.substring(2);
-    console.log('preset:' + preset);
+    cameraConfiguration.snapshot.fileNamePrefix = preset;
+    cameraConfiguration.snapshot.downloadFolder += '\/' + preset; 
+    console.log('preset:' + preset + ' :: ' + cameraConfiguration.snapshot.downloadFolder);
     gotoPresetPosition(preset, function (err, res) {});
     setTimeout(function () {
       downloadImage(function (err, res) {
@@ -89,7 +90,9 @@ var runScheduledGuardtour = function () {
   // every 30 mins
     var minutes = 30, 
         interval = minutes * 60 * 1000;
+
     setInterval(function() {
+        console.log('\nNew Guardtour started!');
         i = 0;
         gotoPresets();
     }, interval);
