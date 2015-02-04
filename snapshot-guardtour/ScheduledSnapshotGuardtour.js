@@ -40,10 +40,11 @@ Recommendation: Use forever npm package to run script as a daemon.
 
 /*globals require */
 
-var 	camelopard  		= require('camelopard'),
-    	i                   	= 0,
-    	data                	= require('./data.json'),
-    	cameraConfiguration 	= data.cameras[0];
+var   camelopard      = require('camelopard'),
+      i                     = 0,
+      data                  = require('./data.json'),
+      cameraConfiguration   = data.cameras[0],
+      baseFolder;
 
 var gotoPresetPosition = function (presetPositionName, callback) {
   camelopard.ptz.gotoPresetPosition(presetPositionName, cameraConfiguration, function (err, res) {
@@ -69,7 +70,7 @@ var gotoPresets = function () {
   setTimeout(function () {
     preset = cameraConfiguration.guardTour.presets[i];
     cameraConfiguration.snapshot.fileNamePrefix = preset;
-    cameraConfiguration.snapshot.downloadFolder += '\/' + preset; 
+    cameraConfiguration.snapshot.downloadFolder = baseFolder + '\/' + preset; 
     console.log('preset:' + preset + ' :: ' + cameraConfiguration.snapshot.downloadFolder);
     gotoPresetPosition(preset, function (err, res) {});
     setTimeout(function () {
@@ -99,6 +100,7 @@ var runScheduledGuardtour = function () {
 
 };
 
-// Run a scheduled Guardtour
+// Run scheduled Guardtours
+baseFolder = cameraConfiguration.snapshot.downloadFolder;
 gotoPresets(); // do a guardtour immidiately
 runScheduledGuardtour();  //do guardtours regularily
